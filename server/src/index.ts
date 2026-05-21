@@ -1,12 +1,11 @@
-import { PrismaPg } from "@prisma/adapter-pg";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import "dotenv/config";
 import express from "express";
 import morgan from "morgan";
+import productRouter from "./routers/productRouter";
 
 const app = express();
-
 
 app.use(
   cors({
@@ -20,6 +19,8 @@ app.use(
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(cookieParser());
+
+app.use("/product", productRouter);
 
 app.get("/healthz", async (req, res) => {
   res.json({ status: "ok" });
