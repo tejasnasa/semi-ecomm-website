@@ -22,7 +22,15 @@ function App() {
       ? (grouped[selectedCategory]?.[selectedSubcategory] ?? [])
       : [];
 
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <main className="app">
+        <Navbar grouped={grouped} onSelect={handleSelect} />
+        <main className="loading">
+          <div className="spinner"></div>
+        </main>
+      </main>
+    );
 
   return (
     <main className="app">
@@ -33,7 +41,10 @@ function App() {
           onSelect={handleSelect}
           selected={selectedSubcategory}
         />
-        <ProductTable products={selectedProducts} selected={selectedSubcategory} />
+        <ProductTable
+          products={selectedProducts}
+          selected={selectedSubcategory}
+        />
       </div>
     </main>
   );

@@ -1,6 +1,6 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import type { Product } from "../types/Product";
-import axios from "axios"
 
 export function useProducts() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -8,8 +8,9 @@ export function useProducts() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/product")
+      .get(import.meta.env.VITE_BACKEND_URL)
       .then((res) => setProducts(res.data))
+      .then((res) => console.log(res))
       .finally(() => setLoading(false));
   }, []);
 
