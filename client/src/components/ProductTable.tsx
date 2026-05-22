@@ -3,7 +3,7 @@ import "./ProductTable.css";
 
 interface Props {
   products: Product[];
-  selected: string;
+  selected: string | null;
 }
 
 const SPEC_COLUMNS: { key: keyof Product; label: string }[] = [
@@ -30,7 +30,7 @@ export default function ProductTable({ products, selected }: Props) {
 
   return (
     <section className="table-wrapper">
-      <div className="title">{selected}</div>
+      {selected && <div className="title">{selected}</div>}
 
       <table className="product-table">
         <thead>
